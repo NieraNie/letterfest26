@@ -6,32 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Letterfest26 — Letters Alive</title>
     
-    <!-- 1. 样式库 (请勿修改) -->
+    <!-- 1. 样式库 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // 强制 Tailwind 使用 Sligoil 字体覆盖所有默认字体类别
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['Sligoil', 'sans-serif'],
+                    serif: ['Sligoil', 'sans-serif'],
+                    mono: ['Sligoil', 'sans-serif'],
+                    display: ['Sligoil', 'sans-serif'],
+                    body: ['Sligoil', 'sans-serif'],
+                }
+            }
+        }
+    </script>
     
-    <!-- 2. 动画库 (让网站变高级的核心，请勿修改) -->
+    <!-- 2. 动画库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-
-    <!-- 3. Google Fonts (作为备选) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ========================================= */
         /* 自定义字体设置区域 (CUSTOM FONTS)         */
         /* ========================================= */
 
-       @font-face {
-    font-family: 'Sligoil';
-    src: url('Sligoil-Micro.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
+        @font-face {
+            font-family: 'Sligoil';
+            /* 使用 ./ 确保在 GitHub Pages 等子目录下也能找到 */
+            src: url('./Sligoil-Micro.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
 
         :root {
             --red: #ea1f1f;
@@ -40,23 +49,22 @@
             --black: #050505;
             --white: #f1f1f1;
             
-            /* 标题字体：Sligoil */
-            --font-display: 'Sligoil', 'Oswald', sans-serif;
-            
-            /* 正文字体：全站优先使用 Sligoil */
-            --font-body: 'Sligoil', 'Helvetica Neue', 'Helvetica', 'Arial', 'Inter', sans-serif;
+            /* 全局强制 Sligoil */
+            --font-display: 'Sligoil', sans-serif;
+            --font-body: 'Sligoil', sans-serif;
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: 'Sligoil', sans-serif !important;
             background-color: var(--white);
             color: var(--black);
             overflow-x: hidden;
             cursor: none;
         }
 
-        .display-font { 
-            font-family: var(--font-display); 
+        /* 强制所有元素使用 Sligoil */
+        .display-font, h1, h2, h3, h4, h5, h6, p, a, span, button, div { 
+            font-family: 'Sligoil', sans-serif !important; 
         }
 
         /* Noise Texture */
@@ -95,7 +103,7 @@
             content: 'BUY';
             font-size: 10px;
             font-weight: bold;
-            font-family: var(--font-body);
+            font-family: 'Sligoil', sans-serif;
         }
 
         /* Preloader */
@@ -596,19 +604,19 @@
         </section>
 
         <!-- SPONSORS (MARQUEE) -->
-        <div class="py-12 bg-white border-b border-black overflow-hidden" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        <div class="py-12 bg-white border-b border-black overflow-hidden">
              <div class="text-center text-xs uppercase tracking-[0.3em] mb-8 text-gray-400">Supported By</div>
              <div class="marquee-inner whitespace-nowrap flex gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <span class="text-3xl font-serif italic font-bold">University of Edinburgh ECA</span>
+                <span class="text-3xl font-bold italic">University of Edinburgh ECA</span>
                 <span class="text-3xl font-bold">Adobe</span>
-                <span class="text-3xl font-serif font-bold">Creative Scotland</span>
+                <span class="text-3xl font-bold">Creative Scotland</span>
                 <span class="text-3xl font-bold">Colophon Foundry</span>
-                <span class="text-3xl font-serif italic font-bold">Edinburgh Printmakers</span>
+                <span class="text-3xl font-bold italic">Edinburgh Printmakers</span>
                 <span class="text-3xl font-bold">ISTD</span>
                 <!-- Duplicate for seamless scroll -->
-                <span class="text-3xl font-serif italic font-bold">University of Edinburgh ECA</span>
+                <span class="text-3xl font-bold italic">University of Edinburgh ECA</span>
                 <span class="text-3xl font-bold">Adobe</span>
-                <span class="text-3xl font-serif font-bold">Creative Scotland</span>
+                <span class="text-3xl font-bold">Creative Scotland</span>
              </div>
         </div>
 
@@ -778,4 +786,3 @@
     </script>
 </body>
 </html>
-
