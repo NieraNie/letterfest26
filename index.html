@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,7 +111,6 @@
         body.hovering-shop .cursor-rose { transform: scale(1.3); }
         body.rose-on-light .cursor-rose { background-color: #000000; }
         body.rose-on-red .cursor-rose { background-color: #fff100; }
-        /* Yellow bg -> rose turns black or red */
         body.rose-on-yellow .cursor-rose { background-color: #000000; }
 
         /* Preloader */
@@ -210,7 +208,6 @@
             <!-- Left: Design/Art -->
             <div class="w-full md:w-1/2 bg-black relative overflow-hidden group">
                 <img src="logo.png" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 opacity-20 z-10 invert" alt="Watermark">
-                <!-- Placeholder for "My Design Image" -->
                 <img src="party.png" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 mix-blend-screen" alt="Ticket Art">
                 <div class="absolute bottom-6 left-6 text-white border-l-2 border-[#fff100] pl-4">
                     <p class="text-xs uppercase tracking-widest text-[#fff100]">Admit One</p>
@@ -220,7 +217,6 @@
 
             <!-- Right: Info -->
             <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between bg-white relative">
-                <!-- Cutout circles decoration -->
                 <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-black rounded-full z-20 hidden md:block"></div>
 
                 <div>
@@ -243,7 +239,7 @@
                         </div>
                         <div class="flex justify-between border-b border-black pb-2">
                             <span class="text-gray-500">Access</span>
-                            <span class="font-bold text-right">Full Festival<br>All Stages</span>
+                            <span class="font-bold text-right">1-Day Pass</span>
                         </div>
                     </div>
                 </div>
@@ -267,6 +263,7 @@
                 <p>EDINBURGH, UK</p>
             </div>
         </div>
+        <!-- ✅ thin Sligoil -->
         <div class="text-[15vw] leading-none font-light display-font tracking-tight flex items-end">
             <span id="counter">0</span>%
         </div>
@@ -314,7 +311,9 @@
                 <div class="reveal-text sticky top-32">
                     <span class="text-[#ea1f1f] font-mono text-sm tracking-widest uppercase mb-6 block">01 — The Concept</span>
                     <h2 class="text-5xl md:text-7xl font-bold uppercase display-font leading-[0.9] mb-8">Not just shapes.<br>Living Characters.</h2>
-                    <p class="text-xl md:text-2xl font-light text-gray-400 leading-relaxed max-w-lg">Letterfest26 invites you to witness typography not as a static tool for reading, but as a physical, emotional event.</p>
+                    <p class="text-xl md:text-2xl font-light text-gray-400 leading-relaxed max-w-lg">
+                        Letterfest26 invites you to witness typography not as a static tool for reading, but as a physical, emotional event.
+                    </p>
                 </div>
                 <div class="w-full flex flex-col gap-12">
                     <div class="img-container w-full relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
@@ -328,16 +327,69 @@
         <!-- SPEAKERS -->
         <section id="speakers" class="bg-[#f1f1f1] border-b border-black">
              <div class="px-6 md:px-12 py-12 flex justify-between items-end border-b border-black">
-                 <div><span class="text-[#20b8ed] font-mono text-sm tracking-widest uppercase mb-2 block">02 — Lineup</span><h2 class="text-7xl font-bold uppercase display-font text-black">Voices</h2></div>
-                 <p class="hidden md:block font-mono text-xs uppercase max-w-xs text-right">Six pioneers reshaping typography.<br>Hover to reveal.</p>
+                 <div>
+                    <span class="text-[#20b8ed] font-mono text-sm tracking-widest uppercase mb-2 block">02 — Lineup</span>
+                    <h2 class="text-7xl font-bold uppercase display-font text-black">Voices</h2>
+                 </div>
+                 <p class="hidden md:block font-mono text-xs uppercase max-w-xs text-right">
+                     Six pioneers reshaping typography.<br>Hover to reveal.
+                 </p>
             </div>
             <div class="accordion-container">
-                <div class="acc-item hover-trigger"><img src="sarah.jpeg" class="acc-img" alt="Sarah"><div class="acc-label">Sarah Boris</div><div class="acc-content text-white"><p class="text-[#ea1f1f] font-mono text-xs uppercase mb-2">Independent Designer</p><h3 class="text-4xl font-bold uppercase display-font mb-4">Sarah Boris</h3><p class="text-sm opacity-80">Topic: Typography Meets Art</p></div></div>
-                <div class="acc-item hover-trigger"><img src="neville.jpg" class="acc-img" alt="Neville"><div class="acc-label">Neville Brody</div><div class="acc-content text-white"><p class="text-[#20b8ed] font-mono text-xs uppercase mb-2">Typographic Pioneer</p><h3 class="text-4xl font-bold uppercase display-font mb-4">Neville Brody</h3><p class="text-sm opacity-80">Topic: Breaking the Rules</p></div></div>
-                <div class="acc-item hover-trigger"><img src="gerry.jpg" class="acc-img" alt="Gerry"><div class="acc-label">Gerry Leonidas</div><div class="acc-content text-white"><p class="text-[#fff100] font-mono text-xs uppercase mb-2">Educator</p><h3 class="text-4xl font-bold uppercase display-font mb-4">Gerry Leonidas</h3><p class="text-sm opacity-80">Topic: Inclusive Future</p></div></div>
-                <div class="acc-item hover-trigger"><img src="alan.jpg" class="acc-img acc-img-alan" alt="Alan"><div class="acc-label">Alan Kitching</div><div class="acc-content text-white"><p class="text-[#ea1f1f] font-mono text-xs uppercase mb-2">Letterpress</p><h3 class="text-4xl font-bold uppercase display-font mb-4">Alan Kitching</h3><p class="text-sm opacity-80">Topic: Living Craft</p></div></div>
-                <div class="acc-item hover-trigger"><img src="morag.jpg" class="acc-img" alt="Morag"><div class="acc-label">Morag Myerscough</div><div class="acc-content text-white"><p class="text-[#20b8ed] font-mono text-xs uppercase mb-2">Designer</p><h3 class="text-4xl font-bold uppercase display-font mb-4">Morag Myerscough</h3><p class="text-sm opacity-80">Topic: Connection</p></div></div>
-                <div class="acc-item hover-trigger"><img src="Seb.jpg" class="acc-img" alt="Seb"><div class="acc-label">Seb Lester</div><div class="acc-content text-white"><p class="text-[#fff100] font-mono text-xs uppercase mb-2">Calligrapher</p><h3 class="text-4xl font-bold uppercase display-font mb-4">Seb Lester</h3><p class="text-sm opacity-80">Topic: Magic of Letters</p></div></div>
+                <div class="acc-item hover-trigger">
+                    <img src="sarah.jpeg" class="acc-img" alt="Sarah">
+                    <div class="acc-label">Sarah Boris</div>
+                    <div class="acc-content text-white">
+                        <p class="text-[#ea1f1f] font-mono text-xs uppercase mb-2">Independent Designer</p>
+                        <h3 class="text-4xl font-bold uppercase display-font mb-4">Sarah Boris</h3>
+                        <p class="text-sm opacity-80">Topic: Typography Meets Art</p>
+                    </div>
+                </div>
+                <div class="acc-item hover-trigger">
+                    <img src="neville.jpg" class="acc-img" alt="Neville">
+                    <div class="acc-label">Neville Brody</div>
+                    <div class="acc-content text-white">
+                        <p class="text-[#20b8ed] font-mono text-xs uppercase mb-2">Typographic Pioneer</p>
+                        <h3 class="text-4xl font-bold uppercase display-font mb-4">Neville Brody</h3>
+                        <p class="text-sm opacity-80">Topic: Breaking the Rules</p>
+                    </div>
+                </div>
+                <div class="acc-item hover-trigger">
+                    <img src="gerry.jpg" class="acc-img" alt="Gerry">
+                    <div class="acc-label">Gerry Leonidas</div>
+                    <div class="acc-content text-white">
+                        <p class="text-[#fff100] font-mono text-xs uppercase mb-2">Educator</p>
+                        <h3 class="text-4xl font-bold uppercase display-font mb-4">Gerry Leonidas</h3>
+                        <p class="text-sm opacity-80">Topic: Inclusive Future</p>
+                    </div>
+                </div>
+                <div class="acc-item hover-trigger">
+                    <img src="alan.jpg" class="acc-img acc-img-alan" alt="Alan">
+                    <div class="acc-label">Alan Kitching</div>
+                    <div class="acc-content text-white">
+                        <p class="text-[#ea1f1f] font-mono text-xs uppercase mb-2">Letterpress</p>
+                        <h3 class="text-4xl font-bold uppercase display-font mb-4">Alan Kitching</h3>
+                        <p class="text-sm opacity-80">Topic: Living Craft</p>
+                    </div>
+                </div>
+                <div class="acc-item hover-trigger">
+                    <img src="morag.jpg" class="acc-img" alt="Morag">
+                    <div class="acc-label">Morag Myerscough</div>
+                    <div class="acc-content text-white">
+                        <p class="text-[#20b8ed] font-mono text-xs uppercase mb-2">Designer</p>
+                        <h3 class="text-4xl font-bold uppercase display-font mb-4">Morag Myerscough</h3>
+                        <p class="text-sm opacity-80">Topic: Connection</p>
+                    </div>
+                </div>
+                <div class="acc-item hover-trigger">
+                    <img src="Seb.jpg" class="acc-img" alt="Seb">
+                    <div class="acc-label">Seb Lester</div>
+                    <div class="acc-content text-white">
+                        <p class="text-[#fff100] font-mono text-xs uppercase mb-2">Calligrapher</p>
+                        <h3 class="text-4xl font-bold uppercase display-font mb-4">Seb Lester</h3>
+                        <p class="text-sm opacity-80">Topic: Magic of Letters</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -348,30 +400,86 @@
                     <span class="text-[#ea1f1f] font-mono text-sm tracking-widest uppercase mb-4 block">03 — Program</span>
                     <h2 class="text-6xl font-bold uppercase display-font mb-12">Schedule</h2>
                     <div class="flex flex-col gap-0 border border-black">
-                        <button onclick="openTab(0)" class="tab-btn active p-6 text-left uppercase font-bold text-xl border-b border-black hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">Thursday <span class="text-xs font-mono opacity-50 mt-2">6.18</span></button>
-                        <button onclick="openTab(1)" class="tab-btn p-6 text-left uppercase font-bold text-xl border-b border-black hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">Friday <span class="text-xs font-mono opacity-50 mt-2">6.19</span></button>
-                        <button onclick="openTab(2)" class="tab-btn p-6 text-left uppercase font-bold text-xl hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">Saturday <span class="text-xs font-mono opacity-50 mt-2">6.20</span></button>
+                        <button onclick="openTab(0)" class="tab-btn active p-6 text-left uppercase font-bold text-xl border-b border-black hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">
+                            Thursday <span class="text-xs font-mono opacity-50 mt-2">6.18</span>
+                        </button>
+                        <button onclick="openTab(1)" class="tab-btn p-6 text-left uppercase font-bold text-xl border-b border-black hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">
+                            Friday <span class="text-xs font-mono opacity-50 mt-2">6.19</span>
+                        </button>
+                        <button onclick="openTab(2)" class="tab-btn p-6 text-left uppercase font-bold text-xl hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">
+                            Saturday <span class="text-xs font-mono opacity-50 mt-2">6.20</span>
+                        </button>
                     </div>
                 </div>
                 <div class="lg:col-span-8 min-h-[500px] border-l border-black pl-0 lg:pl-12 pt-4">
                     <!-- Day 1 -->
                     <div id="day-0" class="schedule-tab block">
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:00-10:30</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Opening Ceremony</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:30-12:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Sarah Boris</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">12:00-13:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Printmaking</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">16:00-17:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Alan Kitching</h3></div></div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:00-10:30</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Opening Ceremony</h3>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:30-12:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Talk: Sarah Boris</h3>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">12:00-13:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Printmaking</h3>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">16:00-17:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Talk: Alan Kitching</h3>
+                            </div>
+                        </div>
                     </div>
                     <!-- Day 2 -->
                     <div id="day-1" class="schedule-tab hidden">
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#20b8ed] font-mono text-lg font-bold w-32">10:00-11:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Neville Brody</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#20b8ed] font-mono text-lg font-bold w-32">11:30-13:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Calligraphy Lab</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#20b8ed] font-mono text-lg font-bold w-32">16:00-17:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Seb Lester</h3></div></div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#20b8ed] font-mono text-lg font-bold w-32">10:00-11:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Talk: Neville Brody</h3>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#20b8ed] font-mono text-lg font-bold w-32">11:30-13:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Calligraphy Lab</h3>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#20b8ed] font-mono text-lg font-bold w-32">16:00-17:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Talk: Seb Lester</h3>
+                            </div>
+                        </div>
                     </div>
                     <!-- Day 3 -->
                     <div id="day-2" class="schedule-tab hidden">
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:00-11:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Gerry Leonidas</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">12:00-13:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Printmaking</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">16:00-17:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Morag Myerscough</h3></div></div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:00-11:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Talk: Gerry Leonidas</h3>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">12:00-13:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Printmaking</h3>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
+                            <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">16:00-17:00</span>
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold uppercase display-font">Talk: Morag Myerscough</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -380,14 +488,51 @@
         <!-- MERCH -->
         <section id="merch" class="py-24 bg-[#050505] text-white border-y border-white/20">
              <div class="px-6 md:px-12 mb-16 flex justify-between items-end">
-                 <div><span class="text-[#fff100] font-mono text-sm tracking-widest uppercase mb-2 block">04 — Goods</span><h2 class="text-6xl font-bold uppercase display-font">Store</h2></div>
+                 <div>
+                    <span class="text-[#fff100] font-mono text-sm tracking-widest uppercase mb-2 block">04 — Goods</span>
+                    <h2 class="text-6xl font-bold uppercase display-font">Store</h2>
+                 </div>
                  <a href="#" class="border-b border-white pb-1 hover:text-[#fff100] hover:border-[#fff100] transition-colors uppercase font-bold text-sm hover-trigger">View All</a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-white/20">
-                <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger"><div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative"><img src="https://picsum.photos/400/400?grayscale&random=10" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Tee"><div class="absolute top-2 left-2 bg-[#ea1f1f] text-white text-[10px] font-bold uppercase px-2 py-1">Apparel</div></div><div class="flex justify-between items-start"><h4 class="text-xl font-bold uppercase display-font">Festival Tee 26</h4><span class="font-mono text-[#fff100]">£30</span></div></div>
-                <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger"><div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative"><img src="https://picsum.photos/400/400?grayscale&random=11" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Tote"><div class="absolute top-2 left-2 bg-[#20b8ed] text-black text-[10px] font-bold uppercase px-2 py-1">Accessory</div></div><div class="flex justify-between items-start"><h4 class="text-xl font-bold uppercase display-font">Exp. Tote</h4><span class="font-mono text-[#fff100]">£15</span></div></div>
-                <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger"><div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative"><img src="https://picsum.photos/400/400?grayscale&random=12" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Poster"></div><div class="flex justify-between items-start"><h4 class="text-xl font-bold uppercase display-font">A2 Poster</h4><span class="font-mono text-[#fff100]">£20</span></div></div>
-                <div class="shop-item group p-8 hover:bg-[#111] transition-colors relative shop-trigger"><div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative"><img src="https://picsum.photos/400/400?grayscale&random=13" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Book"></div><div class="flex justify-between items-start"><h4 class="text-xl font-bold uppercase display-font">Specimen Book</h4><span class="font-mono text-[#fff100]">£25</span></div></div>
+                <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger">
+                    <div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative">
+                        <img src="https://picsum.photos/400/400?grayscale&random=10" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Tee">
+                        <div class="absolute top-2 left-2 bg-[#ea1f1f] text-white text-[10px] font-bold uppercase px-2 py-1">Apparel</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-bold uppercase display-font">Festival Tee 26</h4>
+                        <span class="font-mono text-[#fff100]">£30</span>
+                    </div>
+                </div>
+                <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger">
+                    <div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative">
+                        <img src="https://picsum.photos/400/400?grayscale&random=11" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Tote">
+                        <div class="absolute top-2 left-2 bg-[#20b8ed] text-black text-[10px] font-bold uppercase px-2 py-1">Accessory</div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-bold uppercase display-font">Exp. Tote</h4>
+                        <span class="font-mono text-[#fff100]">£15</span>
+                    </div>
+                </div>
+                <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger">
+                    <div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative">
+                        <img src="https://picsum.photos/400/400?grayscale&random=12" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Poster">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-bold uppercase display-font">A2 Poster</h4>
+                        <span class="font-mono text-[#fff100]">£20</span>
+                    </div>
+                </div>
+                <div class="shop-item group p-8 hover:bg-[#111] transition-colors relative shop-trigger">
+                    <div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative">
+                        <img src="https://picsum.photos/400/400?grayscale&random=13" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Book">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-bold uppercase display-font">Specimen Book</h4>
+                        <span class="font-mono text-[#fff100]">£25</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -403,29 +548,39 @@
              </div>
         </div>
 
-        <!-- VENUE & TICKETS (UPDATED) -->
+        <!-- VENUE & TICKETS -->
         <section id="venue" class="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-[#ea1f1f] text-white">
              <!-- Map Section -->
              <div class="relative border-b lg:border-b-0 lg:border-r border-black/20 flex flex-col" data-bg="red">
                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.336496666276!2d-3.1895689232840554!3d55.94442537315579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c784e56580d1%3A0x7020d5e165780d0!2s50%20George%20Square%2C%20Edinburgh%20EH8%209JU%2C%20UK!5e0!3m2!1sen!2sus!4v1715000000000!5m2!1sen!2sus" class="w-full h-1/2 mix-blend-multiply grayscale contrast-125 invert" style="border:0;" loading="lazy"></iframe>
                  <div class="p-12 flex-1 flex flex-col justify-between bg-[#ea1f1f]">
-                     <div><h2 class="text-5xl font-bold uppercase display-font mb-8">Venue</h2><p class="text-xl">The University of Edinburgh<br>50 George Square<br>Edinburgh EH8 9JU</p></div>
-                     <div class="mt-12 opacity-70 text-sm font-mono uppercase"><p>info@letterfest26.org</p><p>+44 (0)131 555 7826</p></div>
+                     <div>
+                        <h2 class="text-5xl font-bold uppercase display-font mb-8">Venue</h2>
+                        <p class="text-xl">The University of Edinburgh<br>50 George Square<br>Edinburgh EH8 9JU</p>
+                     </div>
+                     <div class="mt-12 opacity-70 text-sm font-mono uppercase">
+                         <p>info@letterfest26.org</p>
+                         <p>+44 (0)131 555 7826</p>
+                     </div>
                  </div>
              </div>
 
-             <!-- NEW TICKETS SECTION -->
-             <!-- Changed background to Yellow, Text to Black, Added Modal Interaction -->
+             <!-- TICKETS SECTION -->
              <div id="tickets" class="p-12 md:p-24 flex flex-col justify-center bg-[#fff100] text-black relative overflow-hidden" data-bg="yellow">
                 <div class="absolute top-0 right-0 p-8 text-black font-bold animate-pulse">
                     ● LIMITED AVAILABILITY
                 </div>
                 
-                <h2 class="text-[8vw] lg:text-[6vw] font-bold uppercase display-font leading-none mb-12 text-black">Get<br>Access</h2>
+                <h2 class="text-[8vw] lg:text-[6vw] font-bold uppercase display-font leading-none mb-12 text-black">
+                    Get<br>Access
+                </h2>
                 
                 <div class="space-y-6">
                     <!-- General Pass Ticket -->
-                    <div onclick="openModal('General Pass', '£18')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover-trigger">
+                    <div onclick="openModal('General Pass', '£18')" 
+                         class="group relative bg-white border-2 border-black p-0 cursor-pointer
+                                hover:-translate-y-2 transition-transform duration-300
+                                hover-trigger">
                         <!-- Perforated line decoration -->
                         <div class="absolute left-[70%] top-0 bottom-0 border-l-2 border-dashed border-black hidden md:block"></div>
                         <div class="absolute left-[70%] top-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
@@ -434,7 +589,9 @@
                         <div class="flex flex-col md:flex-row h-full">
                             <div class="flex-1 p-8 flex flex-col justify-center">
                                 <h3 class="text-4xl font-bold uppercase display-font">General</h3>
-                                <p class="mt-2 font-mono text-sm uppercase text-gray-600 group-hover:text-black">Full 3-Day Access</p>
+                                <p class="mt-2 font-mono text-sm uppercase text-gray-600 group-hover:text-black">
+                                    1-Day Access
+                                </p>
                             </div>
                             <div class="md:w-[30%] bg-black text-white p-8 flex items-center justify-center md:justify-end border-t-2 md:border-t-0 md:border-l-2 border-dashed border-white md:border-black md:bg-white md:text-black">
                                 <span class="text-5xl font-bold display-font">£18</span>
@@ -443,7 +600,10 @@
                     </div>
 
                     <!-- Student Pass Ticket -->
-                    <div onclick="openModal('Student Pass', '£12')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover-trigger">
+                    <div onclick="openModal('Student Pass', '£12')" 
+                         class="group relative bg-white border-2 border-black p-0 cursor-pointer
+                                hover:-translate-y-2 transition-transform duration-300
+                                hover-trigger">
                         <!-- Perforated line decoration -->
                         <div class="absolute left-[70%] top-0 bottom-0 border-l-2 border-dashed border-black hidden md:block"></div>
                         <div class="absolute left-[70%] top-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
@@ -452,7 +612,9 @@
                         <div class="flex flex-col md:flex-row h-full">
                             <div class="flex-1 p-8 flex flex-col justify-center">
                                 <h3 class="text-4xl font-bold uppercase display-font">Student</h3>
-                                <p class="mt-2 font-mono text-sm uppercase text-gray-600 group-hover:text-black">ID Required / Discount</p>
+                                <p class="mt-2 font-mono text-sm uppercase text-gray-600 group-hover:text-black">
+                                    Student 1-Day Access
+                                </p>
                             </div>
                             <div class="md:w-[30%] bg-[#20b8ed] p-8 flex items-center justify-center md:justify-end border-t-2 md:border-t-0 md:border-l-2 border-dashed border-black">
                                 <span class="text-5xl font-bold display-font text-black">£12</span>
@@ -471,34 +633,60 @@
     </main>
 
     <script>
-        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
+        /* Smooth scroll */
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true
+        });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
+        /* Cursor logic */
         const cursorSmall = document.querySelector('.cursor-small');
         const cursorRose  = document.querySelector('.cursor-rose');
         const lerp = (a, b, n) => (1 - n) * a + n * b;
         let clientX = -100, clientY = -100, roseX = -100, roseY = -100;
 
-        document.addEventListener('mousemove', e => { clientX = e.clientX; clientY = e.clientY; gsap.set(cursorSmall, { x: clientX - 4, y: clientY - 4 }); });
-        const renderCursor = () => { roseX = lerp(roseX, clientX, 0.12); roseY = lerp(roseY, clientY, 0.12); gsap.set(cursorRose, { x: roseX - 45, y: roseY - 45 }); requestAnimationFrame(renderCursor); };
+        document.addEventListener('mousemove', e => {
+            clientX = e.clientX;
+            clientY = e.clientY;
+            gsap.set(cursorSmall, { x: clientX - 4, y: clientY - 4 });
+        });
+
+        const renderCursor = () => {
+            roseX = lerp(roseX, clientX, 0.12);
+            roseY = lerp(roseY, clientY, 0.12);
+            gsap.set(cursorRose, { x: roseX - 45, y: roseY - 45 });
+            requestAnimationFrame(renderCursor);
+        };
         renderCursor();
 
-        document.querySelectorAll('.hover-trigger').forEach(el => { el.addEventListener('mouseenter', () => document.body.classList.add('hovering')); el.addEventListener('mouseleave', () => document.body.classList.remove('hovering')); });
-        document.querySelectorAll('.shop-trigger').forEach(el => { el.addEventListener('mouseenter', () => document.body.classList.add('hovering-shop')); el.addEventListener('mouseleave', () => document.body.classList.remove('hovering-shop')); });
-        
+        document.querySelectorAll('.hover-trigger').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+        document.querySelectorAll('.shop-trigger').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering-shop'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering-shop'));
+        });
+
+        /* Rose colour by background */
         document.querySelectorAll('[data-bg]').forEach(el => {
             const type = el.getAttribute('data-bg');
             el.addEventListener('mouseenter', () => {
                 document.body.classList.remove('rose-on-light', 'rose-on-red', 'rose-on-yellow');
-                if (type === 'light') document.body.classList.add('rose-on-light');
-                if (type === 'red')   document.body.classList.add('rose-on-red');
+                if (type === 'light')  document.body.classList.add('rose-on-light');
+                if (type === 'red')    document.body.classList.add('rose-on-red');
                 if (type === 'yellow') document.body.classList.add('rose-on-yellow');
             });
-            el.addEventListener('mouseleave', () => { document.body.classList.remove('rose-on-light', 'rose-on-red', 'rose-on-yellow'); });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('rose-on-light', 'rose-on-red', 'rose-on-yellow');
+            });
         });
 
-        /* MODAL LOGIC */
+        /* Modal logic */
         const modal = document.getElementById('ticket-modal');
         const modalType = document.getElementById('modal-ticket-type');
         const modalPrice = document.getElementById('modal-price');
@@ -506,8 +694,7 @@
         window.openModal = function(type, price) {
             modalType.innerText = type;
             modalPrice.innerText = price;
-            modal.classList.remove('hidden'); // ensure display:flex logic works if using tailwind hidden class
-            // Small timeout to allow CSS transition
+            modal.classList.remove('hidden');
             requestAnimationFrame(() => modal.classList.add('open'));
         }
 
@@ -515,22 +702,70 @@
             modal.classList.remove('open');
         }
 
-        // Close on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
         });
 
-        /* Standard Animations */
+        /* Preloader + scroll animations */
         const tl = gsap.timeline();
         const counter = document.getElementById('counter');
         let count = 0;
-        const updateCounter = setInterval(() => { count += 2; if(count > 100) count = 100; counter.innerText = count; if(count === 100) clearInterval(updateCounter); }, 20);
-        tl.to(".preloader", { y: "-100%", delay: 2.0, duration: 1.2, ease: "power4.inOut" }).to(".hero-title", { y: 0, opacity: 1, duration: 1.5, stagger: 0.1, ease: "power4.out" }, "-=0.5");
+        const updateCounter = setInterval(() => {
+            count += 2;
+            if(count > 100) count = 100;
+            counter.innerText = count;
+            if(count === 100) clearInterval(updateCounter);
+        }, 20);
+
+        tl.to(".preloader", {
+            y: "-100%",
+            delay: 2.0,
+            duration: 1.2,
+            ease: "power4.inOut"
+        }).to(".hero-title", {
+            y: 0,
+            opacity: 1,
+            duration: 1.5,
+            stagger: 0.1,
+            ease: "power4.out"
+        }, "-=0.5");
+
         gsap.to(".marquee-inner", { xPercent: -50, repeat: -1, duration: 20, ease: "linear" });
         gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.img-container').forEach(container => { const img = container.querySelector('img'); gsap.to(img, { y: -50, scale: 1.1, scrollTrigger: { trigger: container, scrub: true } }); });
-        gsap.utils.toArray('.reveal-text').forEach(text => { gsap.from(text, { y: 50, opacity: 0, duration: 1, scrollTrigger: { trigger: text, start: "top 80%" } }); });
-        window.openTab = function(index) { document.querySelectorAll('.tab-btn').forEach((btn, idx) => { if(idx === index) btn.classList.add('active'); else btn.classList.remove('active'); }); document.querySelectorAll('.schedule-tab').forEach((tab, idx) => { if(idx === index) { tab.classList.remove('hidden'); gsap.fromTo(tab, {opacity: 0, y: 10}, {opacity: 1, y: 0, duration: 0.4}); } else { tab.classList.add('hidden'); } }); }
+
+        gsap.utils.toArray('.img-container').forEach(container => {
+            const img = container.querySelector('img');
+            gsap.to(img, {
+                y: -50,
+                scale: 1.1,
+                scrollTrigger: { trigger: container, scrub: true }
+            });
+        });
+
+        gsap.utils.toArray('.reveal-text').forEach(text => {
+            gsap.from(text, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                scrollTrigger: { trigger: text, start: "top 80%" }
+            });
+        });
+
+        /* Schedule tabs */
+        window.openTab = function(index) {
+            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+                if(idx === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            document.querySelectorAll('.schedule-tab').forEach((tab, idx) => {
+                if(idx === index) {
+                    tab.classList.remove('hidden');
+                    gsap.fromTo(tab, {opacity: 0, y: 10}, {opacity: 1, y: 0, duration: 0.4});
+                } else {
+                    tab.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 </html>
