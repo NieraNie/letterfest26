@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -242,14 +241,15 @@
             <div class="absolute w-[40vw] h-[40vw] bg-[#ea1f1f] rounded-full blur-[120px] opacity-20 animate-pulse top-0 right-0 pointer-events-none"></div>
             <div class="absolute w-[30vw] h-[30vw] bg-[#20b8ed] rounded-full blur-[100px] opacity-20 bottom-0 left-0 pointer-events-none"></div>
 
-            <div class="z-10 flex items-center justify-center select-none relative mix-blend-difference">
-    <img 
-        src="logo.png" 
-        alt="Letterfest26 logo" 
-        class="hero-title hero-logo w-[60vw] max-w-[520px] md:max-w-[640px] h-auto"
-    >
-</div>
-
+            <!-- 这里是替换后的 LOGO 区域 -->
+            <div class="z-10 flex items-center justify-center select-none relative">
+                <img 
+                    src="logo.png" 
+                    alt="Letterfest26 logo" 
+                    class="hero-title hero-logo w-[75vw] md:w-[55vw] lg:w-[45vw] h-auto"
+                    style="mix-blend-mode: normal; filter: none;"
+                >
+            </div>
 
             <div class="absolute bottom-12 w-full px-12 flex justify-between items-end font-mono text-xs uppercase tracking-widest mix-blend-difference text-white">
                 <div>SCROLL TO EXPLORE</div>
@@ -387,7 +387,7 @@
                         <button onclick="openTab(1)" class="tab-btn p-6 text-left uppercase font-bold text-xl border-b border-black hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">
                             Friday <span class="text-xs font-mono opacity-50 mt-2">6.19</span>
                         </button>
-                        <button onclick="openTab(2)" class="tab-btn p-6 text-left uppercase font-bold text-xl hover:bg-black hover:text-white transition-colors hover-trigger flex justify-between group">
+                        <button onclick="openTab(2)" class="tab-btn p-6 text-left uppercase font-bold text-xl hover:bg黑 hover:text-white transition-colors hover-trigger flex justify-between group">
                             Saturday <span class="text-xs font-mono opacity-50 mt-2">6.20</span>
                         </button>
                     </div>
@@ -497,7 +497,7 @@
                     <div id="day-2" class="schedule-tab hidden">
                         <!-- 10:00 -->
                         <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
-                            <span class="bg-[#fff100] text-black border border-black font-mono text-lg font-bold w-32 px-1 text-center">10:00-11:00</span>
+                            <span class="bg-[#fff100] text黑 border border-black font-mono text-lg font-bold w-32 px-1 text-center">10:00-11:00</span>
                             <div class="flex-1">
                                 <h3 class="text-3xl font-bold uppercase display-font">Talk & Q&A: Gerry Leonidas</h3>
                                 <p class="text-gray-500 font-mono text-xs uppercase mt-1">Lecture Theatre A</p>
@@ -505,28 +505,28 @@
                         </div>
                          <!-- 11:00 -->
                          <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
-                            <span class="bg-[#fff100] text-black border border-black font-mono text-lg font-bold w-32 px-1 text-center">11:00-11:30</span>
+                            <span class="bg-[#fff100] text黑 border border-black font-mono text-lg font-bold w-32 px-1 text-center">11:00-11:30</span>
                             <div class="flex-1">
                                 <h3 class="text-3xl font-bold uppercase display-font">Coffee Break</h3>
                             </div>
                         </div>
                         <!-- 12:00 -->
                         <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
-                            <span class="bg-[#fff100] text-black border border-black font-mono text-lg font-bold w-32 px-1 text-center">12:00-13:00</span>
+                            <span class="bg-[#fff100] text黑 border border-black font-mono text-lg font-bold w-32 px-1 text-center">12:00-13:00</span>
                             <div class="flex-1">
                                 <h3 class="text-3xl font-bold uppercase display-font">Printmaking Workshop</h3>
                             </div>
                         </div>
                          <!-- 14:00 -->
                          <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
-                            <span class="bg-[#fff100] text-black border border-black font-mono text-lg font-bold w-32 px-1 text-center">14:00-15:30</span>
+                            <span class="bg-[#fff100] text黑 border border-black font-mono text-lg font-bold w-32 px-1 text-center">14:00-15:30</span>
                             <div class="flex-1">
                                 <h3 class="text-3xl font-bold uppercase display-font">Exhibit Exploration</h3>
                             </div>
                         </div>
                          <!-- 16:00 -->
                          <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
-                            <span class="bg-[#fff100] text-black border border-black font-mono text-lg font-bold w-32 px-1 text-center">16:00-17:00</span>
+                            <span class="bg-[#fff100] text黑 border border-black font-mono text-lg font-bold w-32 px-1 text-center">16:00-17:00</span>
                             <div class="flex-1">
                                 <h3 class="text-3xl font-bold uppercase display-font">Talk & Q&A: Morag Myerscough</h3>
                                 <p class="text-gray-500 font-mono text-xs uppercase mt-1">Main Hall</p>
@@ -534,7 +534,7 @@
                         </div>
                          <!-- 17:00 -->
                         <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline">
-                            <span class="bg-[#fff100] text-black border border-black font-mono text-lg font-bold w-32 px-1 text-center">17:00-19:00</span>
+                            <span class="bg-[#fff100] text黑 border border-black font-mono text-lg font-bold w-32 px-1 text-center">17:00-19:00</span>
                             <div class="flex-1">
                                 <h3 class="text-3xl font-bold uppercase display-font">Closing Ceremony & Farewell Party</h3>
                             </div>
@@ -545,7 +545,7 @@
         </section>
 
         <!-- MERCH (GRID) -->
-        <section id="merch" class="py-24 bg-[#050505] text-white border-y border-white/20">
+        <section id="merch" class="py-24 bg-[#050505] text白 border-y border-white/20">
              <div class="px-6 md:px-12 mb-16 flex justify-between items-end">
                  <div>
                      <span class="text-[#fff100] font-mono text-sm tracking-widest uppercase mb-2 block">04 — Goods</span>
@@ -559,7 +559,7 @@
                 <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger">
                     <div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative">
                         <img src="https://picsum.photos/400/400?grayscale&random=10" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Tee">
-                        <div class="absolute top-2 left-2 bg-[#ea1f1f] text-white text-[10px] font-bold uppercase px-2 py-1">Apparel</div>
+                        <div class="absolute top-2 left-2 bg-[#ea1f1f] text白 text-[10px] font-bold uppercase px-2 py-1">Apparel</div>
                     </div>
                     <div class="flex justify-between items-start">
                         <h4 class="text-xl font-bold uppercase display-font">Festival Tee 26</h4>
@@ -572,7 +572,7 @@
                 <div class="shop-item group border-r border-white/20 border-b lg:border-b-0 p-8 hover:bg-[#111] transition-colors relative shop-trigger">
                     <div class="aspect-square bg-gray-900 mb-6 overflow-hidden relative">
                         <img src="https://picsum.photos/400/400?grayscale&random=11" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" alt="Tote">
-                        <div class="absolute top-2 left-2 bg-[#20b8ed] text-black text-[10px] font-bold uppercase px-2 py-1">Accessory</div>
+                        <div class="absolute top-2 left-2 bg-[#20b8ed] text黑 text-[10px] font-bold uppercase px-2 py-1">Accessory</div>
                     </div>
                     <div class="flex justify-between items-start">
                         <h4 class="text-xl font-bold uppercase display-font">Exp. Tote</h4>
@@ -608,8 +608,8 @@
         </section>
 
         <!-- SPONSORS (MARQUEE) -->
-        <div class="py-12 bg-white border-b border-black overflow-hidden">
-             <div class="text-center text-xs uppercase tracking-[0.3em] mb-8 text-gray-400">Supported By</div>
+        <div class="py-12 bg白 border-b border-black overflow-hidden">
+             <div class="text-center text-xs uppercase tracking-[0.3em] mb-8 text灰-400">Supported By</div>
              <div class="marquee-inner whitespace-nowrap flex gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                 <span class="text-3xl font-bold italic">University of Edinburgh ECA</span>
                 <span class="text-3xl font-bold">Adobe</span>
@@ -625,7 +625,7 @@
         </div>
 
         <!-- FOOTER / VENUE / TICKETS -->
-        <section id="venue" class="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-[#ea1f1f] text-white">
+        <section id="venue" class="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-[#ea1f1f] text白">
              <!-- Left: Info & Map -->
              <div class="relative border-b lg:border-b-0 lg:border-r border-black/20 flex flex-col">
                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.336496666276!2d-3.1895689232840554!3d55.94442537315579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c784e56580d1%3A0x7020d5e165780d0!2s50%20George%20Square%2C%20Edinburgh%20EH8%209JU%2C%20UK!5e0!3m2!1sen!2sus!4v1715000000000!5m2!1sen!2sus" 
@@ -644,7 +644,7 @@
              </div>
 
              <!-- Right: Tickets -->
-             <div class="p-12 md:p-24 flex flex-col justify-center bg-black text-white relative overflow-hidden">
+             <div class="p-12 md:p-24 flex flex-col justify-center bg黑 text白 relative overflow-hidden">
                 <div class="absolute top-0 right-0 p-8 text-[#20b8ed] animate-pulse">
                     ● TICKETS ON SALE
                 </div>
@@ -652,7 +652,7 @@
                 <h2 class="text-[8vw] lg:text-[6vw] font-bold uppercase display-font leading-none mb-12">Get<br>Access</h2>
                 
                 <div class="space-y-4">
-                    <div class="group border border-white/20 p-8 hover:bg-white hover:text-black transition-colors cursor-pointer hover-trigger">
+                    <div class="group border border白/20 p-8 hover:bg白 hover:text黑 transition-colors cursor-pointer hover-trigger">
                         <div class="flex justify-between items-end">
                             <h3 class="text-3xl font-bold uppercase">General</h3>
                             <span class="text-4xl font-mono">£18</span>
@@ -660,7 +660,7 @@
                         <p class="text-sm opacity-50 mt-2 group-hover:opacity-100">Full Access / 1 Day</p>
                     </div>
 
-                    <div class="group border border-white/20 p-8 hover:bg-[#20b8ed] hover:text-black transition-colors cursor-pointer hover-trigger">
+                    <div class="group border border白/20 p-8 hover:bg-[#20b8ed] hover:text黑 transition-colors cursor-pointer hover-trigger">
                         <div class="flex justify-between items-end">
                             <h3 class="text-3xl font-bold uppercase">Student</h3>
                             <span class="text-4xl font-mono">£12</span>
@@ -669,7 +669,7 @@
                     </div>
                 </div>
 
-                <div class="mt-24 pt-8 border-t border-white/20 flex justify-between text-xs font-mono uppercase text-gray-500">
+                <div class="mt-24 pt-8 border-t border白/20 flex justify-between text-xs font-mono uppercase text灰-500">
                     <div>© 2026 Letterfest</div>
                     <div>Designed for Typography</div>
                 </div>
@@ -790,4 +790,3 @@
     </script>
 </body>
 </html>
-
