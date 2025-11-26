@@ -79,7 +79,7 @@
             top: 0;
             left: 0;
             pointer-events: none;
-            z-index: 20000; /* 高于 modal，保证购票弹窗里也能看到鼠标 */
+            z-index: 11000; /* higher than modal */
         }
 
         .cursor-small {
@@ -93,7 +93,7 @@
         .cursor-rose {
             width: 90px;
             height: 90px;
-            z-index: 19999;
+            z-index: 10999;
             mix-blend-mode: normal;
             -webkit-mask-image: url('rose.png');
             mask-image: url('rose.png');
@@ -116,12 +116,8 @@
         /* Preloader */
         .preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 15000; color: #fff;
+            background: #000; z-index: 10000; color: #fff;
             display: flex; flex-direction: column; justify-content: space-between;
-        }
-
-        .preloader-counter {
-            font-weight: 300 !important;  /* 字体变细一点 */
         }
 
         /* Accordion Speakers Styles */
@@ -184,7 +180,17 @@
         #ticket-modal.open { opacity: 1; pointer-events: auto; }
         #ticket-modal .modal-content { transform: translateY(50px) scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         #ticket-modal.open .modal-content { transform: translateY(0) scale(1); }
+
+        /* Schedule animation base */
+        .schedule-underline {
+            transform-origin: left center;
+            transform: scaleX(0);
+        }
+        .schedule-row {
+            will-change: transform, opacity;
+        }
     </style>
+
 <script type="importmap">
 {
   "imports": {
@@ -203,35 +209,37 @@
     <div class="cursor-ball cursor-rose hidden md:block"></div>
 
     <!-- TICKET MODAL -->
-    <div id="ticket-modal" class="fixed inset-0 z-[14000] flex items-center justify-center px-4">
+    <div id="ticket-modal" class="fixed inset-0 z-[10001] flex items-center justify-center px-4">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
         
         <div class="modal-content relative w-full max-w-4xl bg-white shadow-[20px_20px_0px_0px_rgba(255,241,0,1)] flex flex-col md:flex-row overflow-hidden border-2 border-black">
             <button onclick="closeModal()" class="absolute top-4 right-4 z-50 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform hover-trigger">✕</button>
             
-            <!-- Left: Ticket images (front + back) -->
+            <!-- Left: Ticket images -->
             <div class="w-full md:w-1/2 bg-black relative overflow-hidden flex items-center justify-center">
-                <div class="relative w-[80%] max-w-[420px]">
-                    <!-- back card -->
-                    <img id="ticket-back" src="ticket back.png"
-                         class="w-full h-auto absolute top-4 left-4 opacity-80" alt="Ticket back">
-                    <!-- front card -->
-                    <img id="ticket-front" src="ticket blue.png"
-                         class="w-full h-auto relative z-10" alt="Ticket front">
+                <div class="relative w-[90%] max-w-[360px] aspect-[3.2/1]">
+                    <!-- back ticket -->
+                    <img id="modal-ticket-back" src="ticket_back.png"
+                         class="absolute inset-0 w-full h-full object-contain opacity-70 translate-x-3 translate-y-3"
+                         alt="Ticket Back">
+                    <!-- front ticket -->
+                    <img id="modal-ticket-front" src="ticket_blue.png"
+                         class="absolute inset-0 w-full h-full object-contain"
+                         alt="Ticket Front">
+                </div>
+                <div class="absolute bottom-6 left-6 text-white">
+                    <p class="text-xs uppercase tracking-widest text-brand-yellow">Admit One</p>
+                    <h3 class="text-2xl md:text-3xl font-bold uppercase display-font" id="modal-ticket-type">General Pass</h3>
                 </div>
             </div>
 
             <!-- Right: Info -->
             <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between bg-white relative">
-                <!-- Cutout circles decoration -->
-                <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-black rounded-full z-20 hidden md:block"></div>
-
                 <div>
                     <div class="flex justify-between items-start mb-8">
-                        <!-- 去掉右侧 logo 小图 -->
-                        <div class="text-left">
-                            <span class="block text-xs uppercase text-gray-500 tracking-widest">Letterfest26</span>
-                            <span id="modal-ticket-type" class="block text-2xl font-bold uppercase display-font mt-1">General Pass</span>
+                        <div class="text-sm font-mono uppercase tracking-[0.2em] text-gray-500">
+                            LETTERFEST26<br>
+                            TICKET
                         </div>
                         <div class="text-right">
                             <span class="block text-4xl font-bold display-font" id="modal-price">£18</span>
@@ -242,8 +250,7 @@
                     <div class="space-y-6 font-mono text-sm uppercase">
                         <div class="flex justify-between border-b border-black pb-2">
                             <span class="text-gray-500">Date</span>
-                            <!-- 改为“一天有效”，避免误会是三天通票 -->
-                            <span class="font-bold text-right">One day between<br>June 18–20, 2026</span>
+                            <span class="font-bold" id="modal-date">June 18, 2026</span>
                         </div>
                         <div class="flex justify-between border-b border-black pb-2">
                             <span class="text-gray-500">Venue</span>
@@ -251,7 +258,7 @@
                         </div>
                         <div class="flex justify-between border-b border-black pb-2">
                             <span class="text-gray-500">Access</span>
-                            <span class="font-bold text-right">1-DAY PASS</span>
+                            <span class="font-bold text-right" id="modal-access">1-Day Pass</span>
                         </div>
                     </div>
                 </div>
@@ -275,7 +282,7 @@
                 <p>EDINBURGH, UK</p>
             </div>
         </div>
-        <div class="preloader-counter text-[15vw] leading-none display-font tracking-tight flex items-end">
+        <div class="text-[15vw] leading-none font-light display-font tracking-tight flex items-end">
             <span id="counter">0</span>%
         </div>
     </div>
@@ -326,10 +333,8 @@
                 </div>
                 <div class="w-full flex flex-col gap-12">
                     <div class="img-container w-full relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-                        <!-- party 原比例，不裁剪 -->
                         <img src="party.png" class="parallax-img max-w-full h-auto mx-auto" alt="Party">
                     </div>
-                    <!-- O 图可通过 max-w 控制大小 -->
                     <img src="O.png" class="parallax-img w-auto h-auto mx-auto max-w-[220px] md:max-w-[260px] transition-transform duration-500 hover:scale-110 hover:rotate-6" alt="Letter O"/>
                 </div>
             </div>
@@ -366,10 +371,46 @@
                 <div class="lg:col-span-8 min-h-[500px] border-l border-black pl-0 lg:pl-12 pt-4">
                     <!-- Day 1 -->
                     <div id="day-0" class="schedule-tab block">
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:00-10:30</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Opening Ceremony</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:30-12:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Sarah Boris</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">12:00-13:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Printmaking</h3></div></div>
-                        <div class="border-b border-gray-200 py-6 group hover-trigger flex flex-col md:flex-row gap-4 md:items-baseline"><span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">16:00-17:00</span><div class="flex-1"><h3 class="text-3xl font-bold uppercase display-font">Talk: Alan Kitching</h3></div></div>
+                        <!-- 10:00 -->
+                        <div class="schedule-row group hover-trigger relative overflow-hidden">
+                            <div class="py-6 flex flex-col md:flex-row gap-4 md:items-baseline">
+                                <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:00-10:30</span>
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold uppercase display-font">Opening Ceremony</h3>
+                                </div>
+                            </div>
+                            <div class="schedule-underline absolute left-0 bottom-0 h-px w-full bg-gray-200"></div>
+                        </div>
+                        <!-- 10:30 -->
+                        <div class="schedule-row group hover-trigger relative overflow-hidden">
+                            <div class="py-6 flex flex-col md:flex-row gap-4 md:items-baseline">
+                                <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">10:30-12:00</span>
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold uppercase display-font">Talk: Sarah Boris</h3>
+                                </div>
+                            </div>
+                            <div class="schedule-underline absolute left-0 bottom-0 h-px w-full bg-gray-200"></div>
+                        </div>
+                        <!-- 12:00 -->
+                        <div class="schedule-row group hover-trigger relative overflow-hidden">
+                            <div class="py-6 flex flex-col md:flex-row gap-4 md:items-baseline">
+                                <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">12:00-13:00</span>
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold uppercase display-font">Printmaking</h3>
+                                </div>
+                            </div>
+                            <div class="schedule-underline absolute left-0 bottom-0 h-px w-full bg-gray-200"></div>
+                        </div>
+                        <!-- 16:00 -->
+                        <div class="schedule-row group hover-trigger relative overflow-hidden">
+                            <div class="py-6 flex flex-col md:flex-row gap-4 md:items-baseline">
+                                <span class="text-[#ea1f1f] font-mono text-lg font-bold w-32">16:00-17:00</span>
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold uppercase display-font">Talk: Alan Kitching</h3>
+                                </div>
+                            </div>
+                            <div class="schedule-underline absolute left-0 bottom-0 h-px w-full bg-gray-200"></div>
+                        </div>
                     </div>
                     <!-- Day 2 -->
                     <div id="day-1" class="schedule-tab hidden">
@@ -421,21 +462,20 @@
                  <div class="p-12 flex-1 flex flex-col justify-between bg-[#ea1f1f]">
                      <div>
                          <h2 class="text-5xl font-bold uppercase display-font mb-8">Venue</h2>
-                         <!-- 地址改为黄色方便在深背景下阅读 -->
-                         <p class="text-xl text-[#fff100]">
-                             The University of Edinburgh<br>
-                             50 George Square<br>
-                             Edinburgh EH8 9JU
+                         <p class="text-xl text-brand-yellow">
+                            The University of Edinburgh<br>
+                            50 George Square<br>
+                            Edinburgh EH8 9JU
                          </p>
                      </div>
-                     <div class="mt-12 opacity-70 text-sm font-mono uppercase">
+                     <div class="mt-12 opacity-90 text-sm font-mono uppercase text-brand-yellow">
                          <p>info@letterfest26.org</p>
                          <p>+44 (0)131 555 7826</p>
                      </div>
                  </div>
              </div>
 
-             <!-- TICKETS SECTION -->
+             <!-- TICKETS -->
              <div id="tickets" class="p-12 md:p-24 flex flex-col justify-center bg-[#fff100] text-black relative overflow-hidden" data-bg="yellow">
                 <div class="absolute top-0 right-0 p-8 text-black font-bold animate-pulse">
                     ● LIMITED AVAILABILITY
@@ -445,8 +485,8 @@
                 
                 <div class="space-y-6">
                     <!-- General Pass Ticket -->
-                    <div onclick="openModal('General Pass', '£18')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 hover-trigger">
-                        <!-- Perforation -->
+                    <div onclick="openModal('General Pass', '£18')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover-trigger">
+                        <!-- Perforated line decoration -->
                         <div class="absolute left-[70%] top-0 bottom-0 border-l-2 border-dashed border-black hidden md:block"></div>
                         <div class="absolute left-[70%] top-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
                         <div class="absolute left-[70%] bottom-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
@@ -456,15 +496,15 @@
                                 <h3 class="text-4xl font-bold uppercase display-font">General</h3>
                                 <p class="mt-2 font-mono text-sm uppercase text-gray-600 group-hover:text-black">1-Day Pass</p>
                             </div>
-                            <div class="md:w-[30%] bg-white text-black p-8 flex items-center justify-center md:justify-end border-t-2 md:border-t-0 md:border-l-2 border-dashed border-black">
+                            <div class="md:w-[30%] p-8 flex items-center justify-center md:justify-end">
                                 <span class="text-5xl font-bold display-font">£18</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Student Pass Ticket -->
-                    <div onclick="openModal('Student Pass', '£12')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 hover-trigger">
-                        <!-- Perforation -->
+                    <div onclick="openModal('Student Pass', '£12')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover-trigger">
+                        <!-- Perforated line decoration -->
                         <div class="absolute left-[70%] top-0 bottom-0 border-l-2 border-dashed border-black hidden md:block"></div>
                         <div class="absolute left-[70%] top-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
                         <div class="absolute left-[70%] bottom-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
@@ -472,10 +512,10 @@
                         <div class="flex flex-col md:flex-row h-full">
                             <div class="flex-1 p-8 flex flex-col justify-center">
                                 <h3 class="text-4xl font-bold uppercase display-font">Student</h3>
-                                <p class="mt-2 font-mono text-sm uppercase text-gray-600 group-hover:text-black">Student 1-Day Pass</p>
+                                <p class="mt-2 font-mono text-sm uppercase text-gray-600 group-hover:text-black">1-Day Pass / ID Required</p>
                             </div>
-                            <div class="md:w-[30%] bg-[#20b8ed] p-8 flex items-center justify-center md:justify-end border-t-2 md:border-t-0 md:border-l-2 border-dashed border-black">
-                                <span class="text-5xl font-bold display-font text-black">£12</span>
+                            <div class="md:w-[30%] p-8 flex items-center justify-center md:justify-end">
+                                <span class="text-5xl font-bold display-font">£12</span>
                             </div>
                         </div>
                     </div>
@@ -491,41 +531,24 @@
     </main>
 
     <script>
-        /* Lenis smooth scroll */
+        /* Smooth scroll */
         const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
-        /* Cursor logic */
+        /* Cursor */
         const cursorSmall = document.querySelector('.cursor-small');
         const cursorRose  = document.querySelector('.cursor-rose');
         const lerp = (a, b, n) => (1 - n) * a + n * b;
         let clientX = -100, clientY = -100, roseX = -100, roseY = -100;
 
-        document.addEventListener('mousemove', e => { 
-            clientX = e.clientX; 
-            clientY = e.clientY; 
-            gsap.set(cursorSmall, { x: clientX - 4, y: clientY - 4 }); 
-        });
-
-        const renderCursor = () => { 
-            roseX = lerp(roseX, clientX, 0.12); 
-            roseY = lerp(roseY, clientY, 0.12); 
-            gsap.set(cursorRose, { x: roseX - 45, y: roseY - 45 }); 
-            requestAnimationFrame(renderCursor); 
-        };
+        document.addEventListener('mousemove', e => { clientX = e.clientX; clientY = e.clientY; gsap.set(cursorSmall, { x: clientX - 4, y: clientY - 4 }); });
+        const renderCursor = () => { roseX = lerp(roseX, clientX, 0.12); roseY = lerp(roseY, clientY, 0.12); gsap.set(cursorRose, { x: roseX - 45, y: roseY - 45 }); requestAnimationFrame(renderCursor); };
         renderCursor();
 
-        document.querySelectorAll('.hover-trigger').forEach(el => { 
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering')); 
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering')); 
-        });
-        document.querySelectorAll('.shop-trigger').forEach(el => { 
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering-shop')); 
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering-shop')); 
-        });
+        document.querySelectorAll('.hover-trigger').forEach(el => { el.addEventListener('mouseenter', () => document.body.classList.add('hovering')); el.addEventListener('mouseleave', () => document.body.classList.remove('hovering')); });
+        document.querySelectorAll('.shop-trigger').forEach(el => { el.addEventListener('mouseenter', () => document.body.classList.add('hovering-shop')); el.addEventListener('mouseleave', () => document.body.classList.remove('hovering-shop')); });
         
-        /* Rose color depending on background */
         document.querySelectorAll('[data-bg]').forEach(el => {
             const type = el.getAttribute('data-bg');
             el.addEventListener('mouseenter', () => {
@@ -534,30 +557,32 @@
                 if (type === 'red')   document.body.classList.add('rose-on-red');
                 if (type === 'yellow') document.body.classList.add('rose-on-yellow');
             });
-            el.addEventListener('mouseleave', () => { 
-                document.body.classList.remove('rose-on-light', 'rose-on-red', 'rose-on-yellow'); 
-            });
+            el.addEventListener('mouseleave', () => { document.body.classList.remove('rose-on-light', 'rose-on-red', 'rose-on-yellow'); });
         });
 
         /* MODAL LOGIC */
         const modal = document.getElementById('ticket-modal');
         const modalType = document.getElementById('modal-ticket-type');
         const modalPrice = document.getElementById('modal-price');
-        const ticketFront = document.getElementById('ticket-front');
-        const ticketBack  = document.getElementById('ticket-back');
+        const modalDate  = document.getElementById('modal-date');
+        const modalAccess = document.getElementById('modal-access');
+        const modalFront = document.getElementById('modal-ticket-front');
+        const modalBack  = document.getElementById('modal-ticket-back');
 
         window.openModal = function(type, price) {
             modalType.innerText = type;
             modalPrice.innerText = price;
 
-            // 根据不同票价切换图片
-            if (type.includes('Student')) {
-                ticketFront.src = 'ticket red.png';
-                ticketBack.src  = 'ticket back.png';
+            if (type === 'General Pass') {
+                modalDate.innerText = 'June 18, 2026';
+                modalAccess.innerText = '1-Day Pass (General)';
+                modalFront.src = 'ticket_blue.png';
             } else {
-                ticketFront.src = 'ticket blue.png';
-                ticketBack.src  = 'ticket back.png';
+                modalDate.innerText = 'June 19, 2026';
+                modalAccess.innerText = '1-Day Pass (Student)';
+                modalFront.src = 'ticket_red.png';
             }
+            modalBack.src = 'ticket_back.png';
 
             modal.classList.add('open');
         }
@@ -570,59 +595,21 @@
             if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
         });
 
-        /* Preloader + hero animation */
+        /* Preloader + basic animations */
         const tl = gsap.timeline();
         const counter = document.getElementById('counter');
         let count = 0;
-        const updateCounter = setInterval(() => { 
-            count += 2; 
-            if(count > 100) count = 100; 
-            counter.innerText = count; 
-            if(count === 100) clearInterval(updateCounter); 
-        }, 20);
+        const updateCounter = setInterval(() => { count += 2; if(count > 100) count = 100; counter.innerText = count; if(count === 100) clearInterval(updateCounter); }, 20);
+        tl.to(".preloader", { y: "-100%", delay: 2.0, duration: 1.2, ease: "power4.inOut" })
+          .to(".hero-title", { y: 0, opacity: 1, duration: 1.5, stagger: 0.1, ease: "power4.out" }, "-=0.5");
 
-        tl.to(".preloader", { 
-            y: "-100%", 
-            delay: 2.0, 
-            duration: 1.2, 
-            ease: "power4.inOut" 
-        })
-        .to(".hero-title", { 
-            y: 0, 
-            opacity: 1, 
-            duration: 1.5, 
-            stagger: 0.1, 
-            ease: "power4.out" 
-        }, "-=0.5");
-
-        /* Marquee */
         gsap.to(".marquee-inner", { xPercent: -50, repeat: -1, duration: 20, ease: "linear" });
-
-        /* Scroll animations */
         gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.img-container').forEach(container => { 
-            const img = container.querySelector('img'); 
-            gsap.to(img, { 
-                y: -50, 
-                scale: 1.1, 
-                scrollTrigger: { trigger: container, scrub: true } 
-            }); 
-        });
-        gsap.utils.toArray('.reveal-text').forEach(text => { 
-            gsap.from(text, { 
-                y: 50, 
-                opacity: 0, 
-                duration: 1, 
-                scrollTrigger: { trigger: text, start: "top 80%" } 
-            }); 
-        });
+        gsap.utils.toArray('.img-container').forEach(container => { const img = container.querySelector('img'); gsap.to(img, { y: -50, scale: 1.1, scrollTrigger: { trigger: container, scrub: true } }); });
+        gsap.utils.toArray('.reveal-text').forEach(text => { gsap.from(text, { y: 50, opacity: 0, duration: 1, scrollTrigger: { trigger: text, start: "top 80%" } }); });
 
-        /* Schedule tabs */
         window.openTab = function(index) { 
-            document.querySelectorAll('.tab-btn').forEach((btn, idx) => { 
-                if(idx === index) btn.classList.add('active'); 
-                else btn.classList.remove('active'); 
-            }); 
+            document.querySelectorAll('.tab-btn').forEach((btn, idx) => { if(idx === index) btn.classList.add('active'); else btn.classList.remove('active'); });
             document.querySelectorAll('.schedule-tab').forEach((tab, idx) => { 
                 if(idx === index) { 
                     tab.classList.remove('hidden'); 
@@ -631,6 +618,36 @@
                     tab.classList.add('hidden'); 
                 } 
             }); 
+        }
+
+        /* Schedule animation for Day 0 */
+        const scheduleRows = gsap.utils.toArray('#day-0 .schedule-row');
+
+        if (scheduleRows.length) {
+            const underlines = scheduleRows.map(row =>
+                row.querySelector('.schedule-underline')
+            );
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#schedule',
+                    start: 'top 70%',
+                    once: true
+                }
+            })
+            .from(scheduleRows, {
+                y: 40,
+                opacity: 0,
+                duration: 0.7,
+                ease: 'power3.out',
+                stagger: 0.15
+            }, 0)
+            .to(underlines, {
+                scaleX: 1,
+                duration: 0.7,
+                ease: 'power3.out',
+                stagger: 0.15
+            }, 0);
         }
     </script>
 </body>
