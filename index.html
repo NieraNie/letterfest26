@@ -24,12 +24,10 @@
         /* 自定义字体设置区域 (CUSTOM FONTS)         */
         /* ========================================= */
 
-        /* 
-           指向您上传的 'Sligoil-Micro.otf'
-        */
         @font-face {
             font-family: 'Sligoil';
-            src: url('Sligoil-Micro.otf') format('opentype'); 
+            /* 添加了 ./ 和 ?v=2 以强制刷新缓存并确保路径正确 */
+            src: url('./Sligoil-Micro.otf?v=2') format('opentype'); 
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -186,9 +184,9 @@
 <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
   }
 }
