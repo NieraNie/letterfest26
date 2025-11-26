@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Letterfest26 — Letters Alive</title>
     
-    <!-- 1. Tailwind CSS -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        /* 使用 Sligoil 覆盖 Tailwind 默认字体 */
         tailwind.config = {
             theme: {
                 fontFamily: {
@@ -22,13 +21,13 @@
         }
     </script>
     
-    <!-- 2. 动画库 -->
+    <!-- 动画库 / Animation libs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
     <style>
-        /* 自定义字体 */
+        /* 字体 / Font */
         @font-face {
             font-family: 'Sligoil';
             src: url('./Sligoil-Micro.otf') format('opentype');
@@ -56,7 +55,6 @@
             cursor: none;
         }
 
-        /* 尽量全站使用 Sligoil */
         .display-font, h1, h2, h3, h4, h5, h6, p, a, span, button, div { 
             font-family: 'Sligoil', sans-serif; 
         }
@@ -68,36 +66,36 @@
             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* Custom Cursor */
-        .cursor-ball {
-            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-            border-radius: 50%; mix-blend-mode: difference;
-        }
-        .cursor-small { width: 10px; height: 10px; background: white; }
-        .cursor-large { 
-            width: 40px; height: 40px; border: 1px solid white; 
-            transition: transform 0.15s ease-out, background-color 0.2s; 
-        }
-        body.hovering .cursor-large {
-            transform: scale(1.5);
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: transparent;
-        }
-        body.hovering-shop .cursor-large {
-            transform: scale(2.5);
-            background-color: var(--yellow);
-            border: none;
+        /* 自定义鼠标：rose.png / Custom cursor using rose.png */
+        .cursor-rose {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            width: 56px;
+            height: 56px;
+            background-image: url('rose.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform-origin: center;
+            transition: transform 0.15s ease-out, filter 0.2s ease-out;
             mix-blend-mode: normal;
-            color: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        body.hovering-shop .cursor-large::after {
-            content: 'BUY';
-            font-size: 10px;
-            font-weight: bold;
-            font-family: 'Sligoil', sans-serif;
+
+        body.hovering .cursor-rose {
+            transform: scale(1.2);
+        }
+
+        body.hovering-shop .cursor-rose {
+            transform: scale(1.5);
+            filter: drop-shadow(0 0 6px rgba(0,0,0,0.45));
+        }
+
+        /* 在红色或对比度不高区域把 rose 反相变亮 / lighten on low-contrast zones */
+        body.cursor-rose-light .cursor-rose {
+            filter: invert(1) brightness(2);
         }
 
         /* Preloader */
@@ -130,16 +128,21 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover;        /* 等比填满，不拉伸 */
-            object-position: center;  /* 以中间为裁剪基准，人脸尽量居中 */
-            filter: grayscale(100%) contrast(1.2); /* 默认黑白 */
+            object-fit: cover;        /* 等比填满 */
+            object-position: center;  /* 默认中心 */
+            filter: grayscale(100%) contrast(1.2);
             opacity: 0.6;
             transition: all 0.6s ease;
         }
         .acc-item:hover .acc-img {
             opacity: 1;
-            filter: grayscale(0%) contrast(1);     /* 悬浮时恢复原图色彩 */
+            filter: grayscale(0%) contrast(1);
             transform: scale(1.05);
+        }
+
+        /* 专门给 alan 的裁切：往右移一点 / shift Alan to the right */
+        .acc-img-alan {
+            object-position: 80% center;
         }
         
         .acc-label {
@@ -172,13 +175,16 @@
         }
         .acc-item:hover .acc-content { transform: translateY(0); }
 
-        /* Tabs */
+        /* party.png 底部微裁 / slight crop at bottom */
+        .party-img {
+            object-position: center 45%;
+        }
+
         .tab-btn.active {
             background-color: var(--black);
             color: var(--white);
         }
 
-        /* Scrollbar Hide */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -199,8 +205,8 @@
 <body class="antialiased">
 
     <div class="noise"></div>
-    <div class="cursor-ball cursor-small hidden md:block"></div>
-    <div class="cursor-ball cursor-large hidden md:block"></div>
+    <!-- 只保留玫瑰光标 / only rose cursor -->
+    <div class="cursor-ball cursor-rose hidden md:block"></div>
 
     <!-- PRELOADER -->
     <div class="preloader p-6 md:p-12">
@@ -211,7 +217,7 @@
                 <p>EDINBURGH, UK</p>
             </div>
         </div>
-        <!-- 数字更细：font-light + tracking-tight -->
+        <!-- 更细的 Sligoil 字体 / thinner loader text -->
         <div class="text-[15vw] leading-none font-light display-font tracking-tight flex items-end">
             <span id="counter">0</span>%
         </div>
@@ -234,12 +240,11 @@
     </nav>
 
     <main>
-        <!-- HERO SECTION -->
-        <section class="h-screen flex flex-col justify-center items-center relative overflow-hidden bg-[#f1f1f1]">
+        <!-- HERO SECTION：加 cursor-contrast-zone 让 rose 变亮 -->
+        <section class="h-screen flex flex-col justify-center items-center relative overflow-hidden bg-[#f1f1f1] cursor-contrast-zone">
             <div class="absolute w-[40vw] h-[40vw] bg-[#ea1f1f] rounded-full blur-[120px] opacity-20 animate-pulse top-0 right-0 pointer-events-none"></div>
             <div class="absolute w-[30vw] h-[30vw] bg-[#20b8ed] rounded-full blur-[100px] opacity-20 bottom-0 left-0 pointer-events-none"></div>
 
-            <!-- 使用 logo.png 替代大字标题，等比缩放 -->
             <div class="z-10 flex items-center justify-center select-none relative mix-blend-difference">
                 <img 
                     src="logo.png" 
@@ -280,19 +285,20 @@
                 </div>
                 
                 <div class="w-full flex flex-col gap-12">
-                    <!-- party.png：等比缩放，不拉伸 -->
-                    <div class="img-container w-full relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+                    <!-- party.png：固定高度 + 轻微裁剪底部白边 -->
+                    <div class="img-container w-full h-[500px] relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
                         <img 
                             src="party.png" 
-                            class="parallax-img w-full h-auto object-contain mx-auto" 
+                            class="parallax-img w-full h-full object-cover party-img" 
                             alt="Party"
                         >
                     </div>
-                    <!-- O.png：等比缩放，不拉伸 -->
-                    <div class="img-container w-full relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 ml-auto md:w-3/4">
+
+                    <!-- O.png：不裁剪，更小 + 悬浮互动 -->
+                    <div class="img-container w-full relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 ml-auto md:w-3/4 flex items-center justify-center">
                         <img 
                             src="O.png" 
-                            class="parallax-img w-full h-auto object-contain mx-auto" 
+                            class="parallax-img max-w-[260px] md:max-w-[320px] w-auto h-auto mx-auto transition-transform duration-500 hover:scale-110 hover:rotate-6" 
                             alt="Letter O"
                         >
                     </div>
@@ -313,7 +319,7 @@
             </div>
 
             <div class="accordion-container">
-                <!-- Speaker 1: Sarah Boris -->
+                <!-- Sarah Boris -->
                 <div class="acc-item hover-trigger">
                     <img src="sarah.jpeg" class="acc-img" alt="Sarah Boris">
                     <div class="acc-label">Sarah Boris</div>
@@ -324,7 +330,7 @@
                     </div>
                 </div>
 
-                <!-- Speaker 2: Neville Brody -->
+                <!-- Neville Brody -->
                 <div class="acc-item hover-trigger">
                     <img src="neville.jpg" class="acc-img" alt="Neville Brody">
                     <div class="acc-label">Neville Brody</div>
@@ -335,7 +341,7 @@
                     </div>
                 </div>
 
-                <!-- Speaker 3: Gerry Leonidas -->
+                <!-- Gerry Leonidas -->
                 <div class="acc-item hover-trigger">
                     <img src="gerry.jpg" class="acc-img" alt="Gerry Leonidas">
                     <div class="acc-label">Gerry Leonidas</div>
@@ -346,9 +352,9 @@
                     </div>
                 </div>
 
-                <!-- Speaker 4: Alan Kitching -->
+                <!-- Alan Kitching（右移一点以露出人脸） -->
                 <div class="acc-item hover-trigger">
-                    <img src="alan.jpg" class="acc-img" alt="Alan Kitching">
+                    <img src="alan.jpg" class="acc-img acc-img-alan" alt="Alan Kitching">
                     <div class="acc-label">Alan Kitching</div>
                     <div class="acc-content text-white">
                         <p class="text-[#ea1f1f] font-mono text-xs uppercase mb-2">Letterpress Master</p>
@@ -357,7 +363,7 @@
                     </div>
                 </div>
 
-                <!-- Speaker 5: Morag Myerscough -->
+                <!-- Morag -->
                 <div class="acc-item hover-trigger">
                     <img src="morag.jpg" class="acc-img" alt="Morag Myerscough">
                     <div class="acc-label">Morag Myerscough</div>
@@ -368,7 +374,7 @@
                     </div>
                 </div>
 
-                <!-- Speaker 6: Seb Lester -->
+                <!-- Seb -->
                 <div class="acc-item hover-trigger">
                     <img src="Seb.jpg" class="acc-img" alt="Seb Lester">
                     <div class="acc-label">Seb Lester</div>
@@ -381,7 +387,7 @@
             </div>
         </section>
 
-        <!-- SCHEDULE -->
+        <!-- SCHEDULE（保持和之前一样） -->
         <section id="schedule" class="bg-white text-black py-24 px-6 md:px-24">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div class="lg:col-span-4 sticky top-24 self-start">
@@ -611,7 +617,8 @@
 
         <!-- VENUE & TICKETS -->
         <section id="venue" class="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-[#ea1f1f] text-white">
-             <div class="relative border-b lg:border-b-0 lg:border-r border-black/20 flex flex-col">
+             <!-- 左侧场地信息：标记为 cursor-contrast-zone 让 rose 变亮 -->
+             <div class="relative border-b lg:border-b-0 lg:border-r border-black/20 flex flex-col cursor-contrast-zone">
                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.336496666276!2d-3.1895689232840554!3d55.94442537315579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c784e56580d1%3A0x7020d5e165780d0!2s50%20George%20Square%2C%20Edinburgh%20EH8%209JU%2C%20UK!5e0!3m2!1sen!2sus!4v1715000000000!5m2!1sen!2sus" 
                  class="w-full h-1/2 mix-blend-multiply grayscale contrast-125 invert" style="border:0;" loading="lazy"></iframe>
                  
@@ -662,7 +669,7 @@
     </main>
 
     <script>
-        // Lenis Smooth Scroll
+        /* Lenis smooth scroll */
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -675,27 +682,25 @@
         }
         requestAnimationFrame(raf);
 
-        // Custom Cursor
-        const cursorSmall = document.querySelector('.cursor-small');
-        const cursorLarge = document.querySelector('.cursor-large');
-        
+        /* Custom cursor: rose.png */
+        const cursorRose = document.querySelector('.cursor-rose');
         const lerp = (a, b, n) => (1 - n) * a + n * b;
         let clientX = -100, clientY = -100, cursorX = -100, cursorY = -100;
 
         document.addEventListener('mousemove', e => {
             clientX = e.clientX;
             clientY = e.clientY;
-            gsap.set(cursorSmall, { x: clientX - 5, y: clientY - 5 });
         });
 
-        const render = () => {
+        const renderCursor = () => {
             cursorX = lerp(cursorX, clientX, 0.1);
             cursorY = lerp(cursorY, clientY, 0.1);
-            gsap.set(cursorLarge, { x: cursorX - 20, y: cursorY - 20 });
-            requestAnimationFrame(render);
+            gsap.set(cursorRose, { x: cursorX - 28, y: cursorY - 28 });
+            requestAnimationFrame(renderCursor);
         };
-        render();
+        renderCursor();
 
+        /* Hover states for cursor scale / shop */
         document.querySelectorAll('.hover-trigger').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -705,7 +710,13 @@
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering-shop'));
         });
 
-        // Preloader
+        /* 低对比区域：让 rose 变亮 / contrast zones toggle */
+        document.querySelectorAll('.cursor-contrast-zone').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-rose-light'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-rose-light'));
+        });
+
+        /* Preloader */
         const tl = gsap.timeline();
         const counter = document.getElementById('counter');
         let count = 0;
@@ -730,10 +741,10 @@
             ease: "power4.out"
         }, "-=0.5");
 
-        // Marquee
+        /* Marquee */
         gsap.to(".marquee-inner", { xPercent: -50, repeat: -1, duration: 20, ease: "linear" });
 
-        // Scroll Animations
+        /* Scroll Animations */
         gsap.registerPlugin(ScrollTrigger);
 
         gsap.utils.toArray('.img-container').forEach(container => {
@@ -752,7 +763,7 @@
             });
         });
 
-        // Schedule Tabs
+        /* Schedule tabs */
         window.openTab = function(index) {
             document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
                 if(idx === index) btn.classList.add('active');
