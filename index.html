@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,17 +218,18 @@
             
             <!-- Left: Ticket images -->
             <div class="w-full md:w-1/2 bg-black relative overflow-hidden flex items-center justify-center">
-                <div class="relative w-[90%] max-w-[360px] aspect-[3.2/1]">
+                <!-- Adjusted ratio to approx 227:70 ~ 3.24:1 -->
+                <div class="relative w-[95%] max-w-[420px] aspect-[227/70]">
                     <!-- back ticket -->
-                    <img id="modal-ticket-back" src="ticket_back.png"
+                    <img id="modal-ticket-back" src="ticket back.png"
                          class="absolute inset-0 w-full h-full object-contain opacity-70 translate-x-3 translate-y-3"
                          alt="Ticket Back">
                     <!-- front ticket -->
-                    <img id="modal-ticket-front" src="ticket_blue.png"
-                         class="absolute inset-0 w-full h-full object-contain"
+                    <img id="modal-ticket-front" src="ticket blue.png"
+                         class="absolute inset-0 w-full h-full object-contain z-10"
                          alt="Ticket Front">
                 </div>
-                <div class="absolute bottom-6 left-6 text-white">
+                <div class="absolute bottom-6 left-6 text-white pointer-events-none z-20">
                     <p class="text-xs uppercase tracking-widest text-brand-yellow">Admit One</p>
                     <h3 class="text-2xl md:text-3xl font-bold uppercase display-font" id="modal-ticket-type">General Pass</h3>
                 </div>
@@ -485,7 +487,7 @@
                 
                 <div class="space-y-6">
                     <!-- General Pass Ticket -->
-                    <div onclick="openModal('General Pass', '£18')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover-trigger">
+                    <div onclick="openModal('General Pass', '£18')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 hover-trigger">
                         <!-- Perforated line decoration -->
                         <div class="absolute left-[70%] top-0 bottom-0 border-l-2 border-dashed border-black hidden md:block"></div>
                         <div class="absolute left-[70%] top-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
@@ -503,7 +505,7 @@
                     </div>
 
                     <!-- Student Pass Ticket -->
-                    <div onclick="openModal('Student Pass', '£12')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover-trigger">
+                    <div onclick="openModal('Student Pass', '£12')" class="group relative bg-white border-2 border-black p-0 cursor-pointer hover:-translate-y-2 transition-transform duration-300 hover-trigger">
                         <!-- Perforated line decoration -->
                         <div class="absolute left-[70%] top-0 bottom-0 border-l-2 border-dashed border-black hidden md:block"></div>
                         <div class="absolute left-[70%] top-[-12px] w-6 h-6 bg-[#fff100] rounded-full border-2 border-black -translate-x-1/2 hidden md:block"></div>
@@ -576,13 +578,13 @@
             if (type === 'General Pass') {
                 modalDate.innerText = 'June 18, 2026';
                 modalAccess.innerText = '1-Day Pass (General)';
-                modalFront.src = 'ticket_blue.png';
+                modalFront.src = 'ticket blue.png';
             } else {
                 modalDate.innerText = 'June 19, 2026';
                 modalAccess.innerText = '1-Day Pass (Student)';
-                modalFront.src = 'ticket_red.png';
+                modalFront.src = 'ticket red.png';
             }
-            modalBack.src = 'ticket_back.png';
+            modalBack.src = 'ticket back.png';
 
             modal.classList.add('open');
         }
