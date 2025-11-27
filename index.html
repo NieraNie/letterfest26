@@ -546,7 +546,7 @@
       id="about"
       class="py-32 px-6 md:px-24 bg-[#050505] text-[#f1f1f1] relative border-b border-white/10">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-start">
-        <div class="reveal-text sticky top-32">
+        <div class="reveal-text lg:sticky lg:top-32">
           <span
             class="text-[#ea1f1f] font-mono text-sm tracking-widest uppercase mb-6 block"
             >01 — The Concept</span
@@ -689,7 +689,8 @@
       class="bg-white text-black py-24 px-6 md:px-24"
       data-bg="light">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div class="lg:col-span-4 sticky top-24 self-start">
+        <!-- 这里改成只有 lg 才 sticky，手机就不会被遮挡 -->
+        <div class="lg:col-span-4 lg:sticky lg:top-24 self-start mb-8 lg:mb-0">
           <span
             class="text-[#ea1f1f] font-mono text-sm tracking-widest uppercase mb-4 block"
             >03 — Program</span
@@ -722,7 +723,6 @@
           class="lg:col-span-8 min-h-[500px] border-l border-black pl-0 lg:pl-12 pt-4">
           <!-- Day 0 -->
           <div id="day-0" class="schedule-tab block">
-            <!-- lines for animation -->
             <div class="schedule-row group hover-trigger relative overflow-hidden">
               <div
                 class="py-4 flex flex-col md:flex-row gap-4 md:items-baseline">
@@ -1215,7 +1215,13 @@
 
   <!-- MAIN SCRIPT -->
   <script>
-    /* 1. Smooth scroll (safe) */
+    /* 强制每次加载从顶部开始，避免手机恢复上次滚动位置 */
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+
+    /* 1. Smooth scroll */
     let lenis = null;
     if (window.Lenis) {
       lenis = new Lenis({
@@ -1224,13 +1230,12 @@
         direction: "vertical",
         smooth: true,
       });
+      lenis.scrollTo(0, { immediate: true });
       function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
-    } else {
-      console.warn("Lenis not found, normal scroll used.");
     }
 
     /* 2. Cursor */
@@ -1426,6 +1431,14 @@
       delay: 2.0,
       duration: 1.2,
       ease: "power4.inOut",
+      onComplete: () => {
+        // 确保预加载结束之后仍然在顶部 / hero
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: true });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      },
     }).to(
       ".hero-title",
       {
@@ -1531,7 +1544,7 @@
       const runner = Runner.create();
       Runner.run(runner, engine);
 
-      const LETTER_SIZE = 120; // 放大一倍
+      const LETTER_SIZE = 120; // bigger
 
       let heroBounds;
       function updateHeroBounds() {
@@ -1621,7 +1634,6 @@
         letterBodies.set(body, div);
         currentIndex++;
 
-        // 每次点击 logo 上移一点，最多 60px
         const clicks = currentIndex;
         const offset = Math.min(clicks * 4, 60);
         heroLogoWrapper.style.transform = `translateY(${-offset}px)`;
@@ -1649,8 +1661,6 @@
           }px) rotate(${angle}rad)`;
         });
       });
-    } else {
-      console.warn("Matter.js not found, falling letters disabled.");
     }
   </script>
 </body>
